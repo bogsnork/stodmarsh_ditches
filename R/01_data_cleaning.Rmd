@@ -1,0 +1,42 @@
+---
+title: "01_data_cleaning"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+
+
+```{r}
+# load data
+data_bsln <- read_csv("../data/data_bsln.csv")
+data_plt <- read_csv("../data/data_plt.csv")
+
+ditch_bsln <- read_csv("../data/ditch_bsln.csv")
+ditch_plt <- read_csv("../data/ditch_plt.csv")
+```
+
+
+How many species names in the new data match names in the old data:
+
+```{r}
+table(data_plt$species %in% data_bsln$species)
+```
+Jeepers...
+
+
+ditches in pilot
+```{r}
+count(data_plt, ditch_id)
+```
+
+
+
+
+
+
+
