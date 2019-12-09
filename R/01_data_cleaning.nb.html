@@ -178,81 +178,230 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KHJlYWR4bClcbmBgYCJ9 -->
 <pre class="r"><code>library(tidyverse)
-</code></pre>
+library(readxl)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXHUwMDFiWzM3bS0tIFx1MDAxYlsxbUF0dGFjaGluZyBwYWNrYWdlc1x1MDAxYlsyMm0gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHRpZHl2ZXJzZSAxLjIuMSAtLVx1MDAxYlszOW1cblx1MDAxYlszN21cdTAwMWJbMzJtdlx1MDAxYlszN20gXHUwMDFiWzM0bWdncGxvdDJcdTAwMWJbMzdtIDMuMi4xICAgICAgIFx1MDAxYlszMm12XHUwMDFiWzM3bSBcdTAwMWJbMzRtcHVycnIgIFx1MDAxYlszN20gMC4zLjIgIFxuXHUwMDFiWzMybXZcdTAwMWJbMzdtIFx1MDAxYlszNG10aWJibGUgXHUwMDFiWzM3bSAyLjEuMSAgICAgICBcdTAwMWJbMzJtdlx1MDAxYlszN20gXHUwMDFiWzM0bWRwbHlyICBcdTAwMWJbMzdtIDAuOC4wLlx1MDAxYlszMW0xXHUwMDFiWzM3bVxuXHUwMDFiWzMybXZcdTAwMWJbMzdtIFx1MDAxYlszNG10aWR5ciAgXHUwMDFiWzM3bSAwLjguMyAgICAgICBcdTAwMWJbMzJtdlx1MDAxYlszN20gXHUwMDFiWzM0bXN0cmluZ3JcdTAwMWJbMzdtIDEuNC4wICBcblx1MDAxYlszMm12XHUwMDFiWzM3bSBcdTAwMWJbMzRtcmVhZHIgIFx1MDAxYlszN20gMS4zLjEgICAgICAgXHUwMDFiWzMybXZcdTAwMWJbMzdtIFx1MDAxYlszNG1mb3JjYXRzXHUwMDFiWzM3bSAwLjQuMCAgXHUwMDFiWzM5bVxuXHUwMDFiWzM3bS0tIFx1MDAxYlsxbUNvbmZsaWN0c1x1MDAxYlsyMm0gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHRpZHl2ZXJzZV9jb25mbGljdHMoKSAtLVxuXHUwMDFiWzMxbXhcdTAwMWJbMzdtIFx1MDAxYlszNG1kcGx5clx1MDAxYlszN206Olx1MDAxYlszMm1maWx0ZXIoKVx1MDAxYlszN20gbWFza3MgXHUwMDFiWzM0bXN0YXRzXHUwMDFiWzM3bTo6ZmlsdGVyKClcblx1MDAxYlszMW14XHUwMDFiWzM3bSBcdTAwMWJbMzRtZHBseXJcdTAwMWJbMzdtOjpcdTAwMWJbMzJtbGFnKClcdTAwMWJbMzdtICAgIG1hc2tzIFx1MDAxYlszNG1zdGF0c1x1MDAxYlszN206OmxhZygpXHUwMDFiWzM5bVxuIn0= -->
-<pre><code>[37m-- [1mAttaching packages[22m --------------------------------------- tidyverse 1.2.1 --[39m
-[37m[32mv[37m [34mggplot2[37m 3.2.1       [32mv[37m [34mpurrr  [37m 0.3.2  
-[32mv[37m [34mtibble [37m 2.1.1       [32mv[37m [34mdplyr  [37m 0.8.0.[31m1[37m
-[32mv[37m [34mtidyr  [37m 0.8.3       [32mv[37m [34mstringr[37m 1.4.0  
-[32mv[37m [34mreadr  [37m 1.3.1       [32mv[37m [34mforcats[37m 0.4.0  [39m
-[37m-- [1mConflicts[22m ------------------------------------------ tidyverse_conflicts() --
-[31mx[37m [34mdplyr[37m::[32mfilter()[37m masks [34mstats[37m::filter()
-[31mx[37m [34mdplyr[37m::[32mlag()[37m    masks [34mstats[37m::lag()[39m</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV9wbHQgPC0gcmVhZF9jc3YoXCIuLi9kYXRhL2RhdGFfcGx0LmNzdlwiKVxuXG5gYGAifQ== -->
-<pre class="r"><code>data_plt &lt;- read_csv(&quot;../data/data_plt.csv&quot;)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkIGRhdGFcbmRhdGFfYnNsbiA8LSByZWFkX2NzdihcIi4uL2RhdGEvZGF0YV9ic2xuLmNzdlwiKVxuZGF0YV9wbHQgPC0gcmVhZF9jc3YoXCIuLi9kYXRhL2RhdGFfcGx0LmNzdlwiKVxuXG5kaXRjaF9ic2xuIDwtIHJlYWRfY3N2KFwiLi4vZGF0YS9kaXRjaF9ic2xuLmNzdlwiKVxuZGl0Y2hfcGx0IDwtIHJlYWRfY3N2KFwiLi4vZGF0YS9kaXRjaF9wbHQuY3N2XCIpXG5gYGAifQ== -->
+<pre class="r"><code># load data
+data_bsln &lt;- read_csv(&quot;../data/data_bsln.csv&quot;)
+data_plt &lt;- read_csv(&quot;../data/data_plt.csv&quot;)
+
+ditch_bsln &lt;- read_csv(&quot;../data/ditch_bsln.csv&quot;)
+ditch_plt &lt;- read_csv(&quot;../data/ditch_plt.csv&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgZGF0ZSA9IFx1MDAxYlszNG1jb2xfZGF0ZXRpbWUoZm9ybWF0ID0gXCJcIilcdTAwMWJbMzltLFxuICB3ZXRuZXNzID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHNjcnViID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGNhbm9weV9wZXJjY292ID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHZtX2NvdW50X2FkID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIHZtX2NvdW50X2p1diA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBzbl9jb3VudF9hZCA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBzbl9jb3VudF9qdXYgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgZGl0Y2hfd2lkdGhfbSA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBkaXRjaF9kZXB0aF9tID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGRpdGNoX3BIID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGRpdGNoX21pY3JvUyA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBkaXRjaF9wcG0gPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgZGF0ZV9pcmVjb3JkID0gXHUwMDFiWzM0bWNvbF9kYXRldGltZShmb3JtYXQgPSBcIlwiKVx1MDAxYlszOW1cbilcblNlZSBzcGVjKC4uLikgZm9yIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb25zLlxuIn0= -->
-<pre><code>Parsed with column specification:
-cols(
-  .default = col_character(),
-  date = [34mcol_datetime(format = &quot;&quot;)[39m,
-  wetness = [32mcol_double()[39m,
-  scrub = [32mcol_double()[39m,
-  canopy_perccov = [32mcol_double()[39m,
-  vm_count_ad = [32mcol_double()[39m,
-  vm_count_juv = [32mcol_double()[39m,
-  sn_count_ad = [32mcol_double()[39m,
-  sn_count_juv = [32mcol_double()[39m,
-  ditch_width_m = [32mcol_double()[39m,
-  ditch_depth_m = [32mcol_double()[39m,
-  ditch_pH = [32mcol_double()[39m,
-  ditch_microS = [32mcol_double()[39m,
-  ditch_ppm = [32mcol_double()[39m,
-  date_irecord = [34mcol_datetime(format = &quot;&quot;)[39m
-)
-See spec(...) for full column specifications.</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="ditches" class="section level2">
+<h2>Ditches</h2>
+<p>tidy up N/A in pilot</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGl0Y2hfcGx0IDwtIGRpdGNoX3BsdCAlPiUgbXV0YXRlKGRpdGNoX2lkID0gcmVjb2RlKGRpdGNoX2lkLCBcIm4vYVwiID0gTkFfY2hhcmFjdGVyXykpXG5kYXRhX3BsdCA8LSBkYXRhX3BsdCAlPiUgbXV0YXRlKGRpdGNoX2lkID0gcmVjb2RlKGRpdGNoX2lkLCBcIm4vYVwiID0gTkFfY2hhcmFjdGVyXykpXG5gYGAifQ== -->
+<pre class="r"><code>ditch_plt &lt;- ditch_plt %&gt;% mutate(ditch_id = recode(ditch_id, &quot;n/a&quot; = NA_character_))
+data_plt &lt;- data_plt %&gt;% mutate(ditch_id = recode(ditch_id, &quot;n/a&quot; = NA_character_))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>ditches in pilot</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY291bnQoZGF0YV9wbHQsIGRpdGNoX2lkKVxuYGBgIn0= -->
+<pre class="r"><code>count(data_plt, ditch_id)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>how many ditches numbered in pilot</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGl0Y2hfcGx0X2NvbXAgPC0gZGl0Y2hfcGx0ICU+JSBmaWx0ZXIoZGl0Y2hfaWQgIT0gaXMubmEoZGl0Y2hfaWQpKVxucGFzdGUoXCJ0aGVyZSBhcmVcIiwgbnJvdyhkaXRjaF9wbHRfY29tcCksIFwibnVtYmVyZWQgZGl0Y2hlcyBpbiB0aGUgcGlsb3QgZGF0YVwiKVxuZGl0Y2hfcGx0X2NvbXAkZGl0Y2hfaWRcbmBgYCJ9 -->
+<pre class="r"><code>ditch_plt_comp &lt;- ditch_plt %&gt;% filter(ditch_id != is.na(ditch_id))
+paste(&quot;there are&quot;, nrow(ditch_plt_comp), &quot;numbered ditches in the pilot data&quot;)
+ditch_plt_comp$ditch_id</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV9wbHRfY29tcCA8LSBkYXRhX3BsdCAlPiUgZmlsdGVyKGRpdGNoX2lkICE9IGlzLm5hKGRpdGNoX2lkKSlcbmBgYCJ9 -->
+<pre class="r"><code>data_plt_comp &lt;- data_plt %&gt;% filter(ditch_id != is.na(ditch_id))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>check ditch numbers in pilot exist in baseline</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGl0Y2hfcGx0X2NvbXAgJT4lIG11dGF0ZShpbl9iYXNlbGluZSA9IGlmZWxzZShkaXRjaF9pZCAlaW4lIGRpdGNoX2JzbG4kZGl0Y2hfaWQsIFwiMVwiLCBcIjBcIikpICU+JSBjb3VudChpbl9iYXNlbGluZSlcbmBgYCJ9 -->
+<pre class="r"><code>ditch_plt_comp %&gt;% mutate(in_baseline = ifelse(ditch_id %in% ditch_bsln$ditch_id, &quot;1&quot;, &quot;0&quot;)) %&gt;% count(in_baseline)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="species" class="section level2">
+<h2>Species</h2>
+<p>how many species do we have</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3BwX2JzbG4gPC0gdG9sb3dlcih1bmlxdWUoZGF0YV9ic2xuJHNwZWNpZXMpKVxuc3BwX3BsdCA8LSB0b2xvd2VyKHVuaXF1ZShkYXRhX3BsdCRzcGVjaWVzKSlcbnNwcF9wbHRfY29tcCA8LSB0b2xvd2VyKHVuaXF1ZShkYXRhX3BsdF9jb21wJHNwZWNpZXMpKVxucGFzdGUoXCJJbiB0aGUgYmFzZWxpbmUgdGhlcmUgYXJlXCIsIGxlbmd0aChzcHBfYnNsbiksIFwidW5pcXVlIHNwZWNpZXMgbmFtZXNcIilcbmBgYCJ9 -->
+<pre class="r"><code>spp_bsln &lt;- tolower(unique(data_bsln$species))
+spp_plt &lt;- tolower(unique(data_plt$species))
+spp_plt_comp &lt;- tolower(unique(data_plt_comp$species))
+paste(&quot;In the baseline there are&quot;, length(spp_bsln), &quot;unique species names&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiSW4gdGhlIGJhc2VsaW5lIHRoZXJlIGFyZSA5MCB1bmlxdWUgc3BlY2llcyBuYW1lc1wiXG4ifQ== -->
+<pre><code>[1] &quot;In the baseline there are 90 unique species names&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFzdGUoXCJJbiB0aGUgcGlsb3QgdGhlcmUgYXJlXCIsIGxlbmd0aChzcHBfcGx0KSwgXCJ1bmlxdWUgc3BlY2llcyBuYW1lc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>paste(&quot;In the pilot there are&quot;, length(spp_plt), &quot;unique species names&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiSW4gdGhlIHBpbG90IHRoZXJlIGFyZSAxMTMgdW5pcXVlIHNwZWNpZXMgbmFtZXNcIlxuIn0= -->
+<pre><code>[1] &quot;In the pilot there are 113 unique species names&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFzdGUoXCJJbiB0aGUgcGlsb3QgKG51bWJlcmVkIGRpdGNoZXMpIHRoZXJlIGFyZVwiLCBsZW5ndGgoc3BwX3BsdF9jb21wKSwgXCJ1bmlxdWUgc3BlY2llcyBuYW1lc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>paste(&quot;In the pilot (numbered ditches) there are&quot;, length(spp_plt_comp), &quot;unique species names&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiSW4gdGhlIHBpbG90IChudW1iZXJlZCBkaXRjaGVzKSB0aGVyZSBhcmUgODcgdW5pcXVlIHNwZWNpZXMgbmFtZXNcIlxuIn0= -->
+<pre><code>[1] &quot;In the pilot (numbered ditches) there are 87 unique species names&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>How many species names in the new data match names in the old data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGUoZGF0YV9wbHQkc3BlY2llcyAlaW4lIGRhdGFfYnNsbiRzcGVjaWVzKVxuXG5gYGAifQ== -->
-<pre class="r"><code>table(data_plt$species %in% data_bsln$species)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGUoc3BwX3BsdCAlaW4lIHNwcF9ic2xuKVxuXG5gYGAifQ== -->
+<pre class="r"><code>table(spp_plt %in% spp_bsln)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5GQUxTRSAgVFJVRSBcbiAgMzA1ICAgMTUwIFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5GQUxTRSAgVFJVRSBcbiAgIDc3ICAgIDM2IFxuIn0= -->
 <pre><code>
 FALSE  TRUE 
-  305   150 </code></pre>
+   77    36 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Jeepers…</p>
-<p>ditches in pilot</p>
+<p>lets just look at the numbered ditches:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MTd9LCJyZGYiOiJINHNJQUFBQUFBQUFCdTFXelhMVE1CQlduS1Q1TDJrTGxDa1hYcUNoOUNlbEp5NGNPTU9sTjQ4aUs0bW9MV2trdWFHY2VHTjRncFoxbzdVVFVXWVlMclJEUGJQeDZ2TnFkL1h0T3Q2UDc4OFB1K2RkUWtoRTZvMEdpZXFnTmlMNHFaRUc2UlQzTDRUVWQyNE5DQm1DYklGMGJ1RHlCdlUzUnllVk9pN1Y0eFgxckZSUERpdjFxRklyRCtNS0hTTWFqUTlRT3owdXRmTHAyMVBVemc1THJRd3BYMU80RFh6bVgwRjJRWW9UdlFCNUN2SU1aTnMvTDdEbklIMlFGa2diNUJYSXkrcStSazlUMG94YlQwM2t3WFlpSEp2SElrRU9aYmlMcGRUaUxnUzdDWFYwTkRYZ01ERHZHTFVZWWFEaUpORTMrSUVTZkE4TUcxWno1dXNGbFl5Sys1NWYrOExXYjRKa2Q1aEtVODZjTWpHYlUwT1o0d2JqbG85Z2NYMVAvZFFDR3IzZjZDYkFONmJLWk5UOUp1cDJGUlhLd0oyQUl2eERFb1lyNmFoOGt2NVZNdmZIeVVQdnNjZHkvODlPSHF0OHIxNmloL3FIdjVia25qZHFGVjlzQVIvMnV5ZUhqcVdaVG5rc0ZYN2hpMlJ4Nzh5SXhQQXBMaGZjU1c3UlZkTXlrMC84WXBOUnFmUlZyTGxoVEYzaXhPRlJxelg2bU5PSmNFRGFjdG5US1pVT0NBSXFQVFRJNEZTNVpXdGc3ektMbWNyQmxHTG0vUkw2bkdPOG5wVy9tSlZRWlRaWWtyQVFpWnZIMlRxWWNMMEM3aTVCcGJsY0FDOG1PSjluVTMvQVlNdDFKcGhSbjVCaGI2UFJaMU1xVjlham0zQndtd2xaVnJWZkZDQVdoak5sOEJBYk5qZVgvT29QMnVWSjFTNnp2S3BWMkNwa3MrampkejhJdWFPLzY5Z0tzQWtkdEJJK3BYbUtkV3ZZQzZHREZQQzFhTU8yZURrbjNvYTZEbWJJbHRKT0tHbjkrTmdNdHRkTUFBeHpXWXlteVQ2YjUvSmlmM3hXME9aZjArSWFlSDFyUlkrQ0l6V1JTQzVud0RWV0lxVVRubUlId3d4OE93S1B0QkVTRDlvRjFJNmNjalF0ZXhwWThZZy80RS9GSk5ibTVRd0FBQT09In0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["ditch_id"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"NA","2":"122"},{"1":"135","2":"23"},{"1":"136","2":"19"},{"1":"146","2":"24"},{"1":"149","2":"20"},{"1":"152","2":"21"},{"1":"153","2":"18"},{"1":"155","2":"17"},{"1":"163","2":"24"},{"1":"165","2":"22"},{"1":"60","2":"12"},{"1":"74","2":"7"},{"1":"75","2":"8"},{"1":"87","2":"32"},{"1":"92","2":"27"},{"1":"99","2":"32"},{"1":"n/a","2":"27"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[17]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGUoc3BwX3BsdF9jb21wICVpbiUgc3BwX2JzbG4pXG5cbmBgYCJ9 -->
+<pre class="r"><code>table(spp_plt_comp %in% spp_bsln)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5GQUxTRSAgVFJVRSBcbiAgIDU2ICAgIDMxIFxuIn0= -->
+<pre><code>
+FALSE  TRUE 
+   56    31 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Jeepers still. So lets look at these species:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJTcGVjaWVzIGluIGJvdGggZGF0YXNldHM6XCIpXG5gYGAifQ== -->
+<pre class="r"><code>print(&quot;Species in both datasets:&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU3BlY2llcyBpbiBib3RoIGRhdGFzZXRzOlwiXG4ifQ== -->
+<pre><code>[1] &quot;Species in both datasets:&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3BwX3BsdF9jb21wW3NwcF9wbHRfY29tcCAlaW4lIHNwcF9ic2xuXSAlPiUgc29ydCgpXG5gYGAifQ== -->
+<pre class="r"><code>spp_plt_comp[spp_plt_comp %in% spp_bsln] %&gt;% sort()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcImJlcnVsYSBlcmVjdGFcIiAgICAgICAgICAgICAgICBcImNhcmV4IGRpc3RpY2hhXCIgICAgICAgICAgICAgICBcImNhcmV4IGRpdmlzYVwiICAgICAgICAgICAgICAgICBcImNhcmV4IG90cnViYWVcIiAgICAgICAgICAgICAgIFxuIFs1XSBcImVsZW9jaGFyaXMgcGFsdXN0cmlzXCIgICAgICAgICBcImVsb2RlYSBudXR0YWxsaWlcIiAgICAgICAgICAgICBcImVwaWxvYml1bSBoaXJzdXR1bVwiICAgICAgICAgICBcImV1cGF0b3JpdW0gY2FubmFiaW51bVwiICAgICAgIFxuIFs5XSBcImdseWNlcmlhIG1heGltYVwiICAgICAgICAgICAgICBcImh5ZHJvY2hhcmlzIG1vcnN1cy1yYW5hZVwiICAgICBcImlyaXMgcHNldWRhY29ydXNcIiAgICAgICAgICAgICBcImp1bmN1cyBhcnRpY3VsYXR1c1wiICAgICAgICAgIFxuWzEzXSBcImp1bmN1cyBpbmZsZXh1c1wiICAgICAgICAgICAgICBcImxlbW5hIG1pbm9yXCIgICAgICAgICAgICAgICAgICBcImxlbW5hIHRyaXN1bGNhXCIgICAgICAgICAgICAgICBcImx5c2ltYWNoaWEgbnVtbXVsYXJpYVwiICAgICAgIFxuWzE3XSBcIm1lbnRoYSBhcXVhdGljYVwiICAgICAgICAgICAgICBcIm15b3NvdGlzIHNjb3JwaW9pZGVzXCIgICAgICAgICBcIm55bXBoYWVhIGFsYmFcIiAgICAgICAgICAgICAgICBcIm9lbmFudGhlIGZpc3R1bG9zYVwiICAgICAgICAgIFxuWzIxXSBcInBvdGFtb2dldG9uIGFjdXRpZm9saXVzXCIgICAgICBcInBvdGFtb2dldG9uIG5hdGFuc1wiICAgICAgICAgICBcInBvdGFtb2dldG9uIHB1c2lsbHVzXCIgICAgICAgICBcInB1bGljYXJpYSBkeXNlbnRlcmljYVwiICAgICAgIFxuWzI1XSBcInJvcmlwcGEgbmFzdHVydGl1bS1hcXVhdGljdW1cIiBcInJ1bWV4IGh5ZHJvbGFwYXRodW1cIiAgICAgICAgICBcInNhbW9sdXMgdmFsZXJhbmRpXCIgICAgICAgICAgICBcInNvbGFudW0gZHVsY2FtYXJhXCIgICAgICAgICAgIFxuWzI5XSBcInNwYXJnYW5pdW0gZXJlY3R1bVwiICAgICAgICAgICBcInR5cGhhIGFuZ3VzdGlmb2xpYVwiICAgICAgICAgICBcInR5cGhhIGxhdGlmb2xpYVwiICAgICAgICAgICAgIFxuIn0= -->
+<pre><code> [1] &quot;berula erecta&quot;                &quot;carex disticha&quot;               &quot;carex divisa&quot;                 &quot;carex otrubae&quot;               
+ [5] &quot;eleocharis palustris&quot;         &quot;elodea nuttallii&quot;             &quot;epilobium hirsutum&quot;           &quot;eupatorium cannabinum&quot;       
+ [9] &quot;glyceria maxima&quot;              &quot;hydrocharis morsus-ranae&quot;     &quot;iris pseudacorus&quot;             &quot;juncus articulatus&quot;          
+[13] &quot;juncus inflexus&quot;              &quot;lemna minor&quot;                  &quot;lemna trisulca&quot;               &quot;lysimachia nummularia&quot;       
+[17] &quot;mentha aquatica&quot;              &quot;myosotis scorpioides&quot;         &quot;nymphaea alba&quot;                &quot;oenanthe fistulosa&quot;          
+[21] &quot;potamogeton acutifolius&quot;      &quot;potamogeton natans&quot;           &quot;potamogeton pusillus&quot;         &quot;pulicaria dysenterica&quot;       
+[25] &quot;rorippa nasturtium-aquaticum&quot; &quot;rumex hydrolapathum&quot;          &quot;samolus valerandi&quot;            &quot;solanum dulcamara&quot;           
+[29] &quot;sparganium erectum&quot;           &quot;typha angustifolia&quot;           &quot;typha latifolia&quot;             </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJTcGVjaWVzIGluIHBpbG90IG5vdCBpbiBiYXNlbGluZTpcIilcbmBgYCJ9 -->
+<pre class="r"><code>print(&quot;Species in pilot not in baseline:&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU3BlY2llcyBpbiBwaWxvdCBub3QgaW4gYmFzZWxpbmU6XCJcbiJ9 -->
+<pre><code>[1] &quot;Species in pilot not in baseline:&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3BwX3BsdF9jb21wWyFzcHBfcGx0X2NvbXAgJWluJSBzcHBfYnNsbl0gJT4lIHNvcnQoKVxuYGBgIn0= -->
+<pre class="r"><code>spp_plt_comp[!spp_plt_comp %in% spp_bsln] %&gt;% sort()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcImFjcm9sb3h1cyBsYWN1c3RyaXNcIiAgICAgICAgICAgICAgICBcImFncm9zdGlzIHN0b2xvbmlmZXJhXCIgICAgICAgICAgICAgICBcImFsaXNtYSBwbGFudGFnby1hcXVhdGljYVwiICAgICAgICAgIFxuIFs0XSBcImFsaXNtYSBzcFwiICAgICAgICAgICAgICAgICAgICAgICAgICBcImFsb3BlY3VydXMgZ2VuaWN1bGF0dXNcIiAgICAgICAgICAgICBcImFuYWNhbXB0aXMgcHlyYW1pZGFsaXNcIiAgICAgICAgICAgIFxuIFs3XSBcImFuaXN1cyB2b3J0ZXhcIiAgICAgICAgICAgICAgICAgICAgICBcImFyZ3lyb25ldGEgYXF1YXRpY2FcIiAgICAgICAgICAgICAgICBcImFyaWFudGEgYXJidXN0b3J1bVwiICAgICAgICAgICAgICAgIFxuWzEwXSBcImJhdGh5b21waGFsdXMgY29udG9ydHVzXCIgICAgICAgICAgICBcImJpdGh5bmlhIGxlYWNoaWlcIiAgICAgICAgICAgICAgICAgICBcImJpdGh5bmlhIHRlbnRhY3VsYXRhXCIgICAgICAgICAgICAgIFxuWzEzXSBcImJvbGJvc2Nob2VudXMgbWFyaXRpbXVzXCIgICAgICAgICAgICBcImNhcmV4IHJpcGFyaWFcIiAgICAgICAgICAgICAgICAgICAgICBcImNlcGFlYSBuZW1vcmFsaXNcIiAgICAgICAgICAgICAgICAgIFxuWzE2XSBcImNoYXJhIGdsb2J1bGFyaXNcIiAgICAgICAgICAgICAgICAgICBcImNoYXJhIHZ1bGdhcmlzXCIgICAgICAgICAgICAgICAgICAgICBcImNyYXRhZWd1cyBtb25vZ3luYVwiICAgICAgICAgICAgICAgIFxuWzE5XSBcImR5dGlzY3VzIG1hcmdpbmFsaXNcIiAgICAgICAgICAgICAgICBcImVsb2RlYSBjYW5hZGVuc2lzXCIgICAgICAgICAgICAgICAgICBcImVwaWxvYml1bSBwYXJ2aWZsb3J1bVwiICAgICAgICAgICAgIFxuWzIyXSBcImV1Y29udWx1cyBjZi4gZnVsdnVzIGFnZ1wiICAgICAgICAgICBcImZpbGFtZW50b3VzIGFsZ2FlXCIgICAgICAgICAgICAgICAgICBcImd5cmF1bHVzIGNyaXN0YVwiICAgICAgICAgICAgICAgICAgIFxuWzI1XSBcImhpcHBldXRpcyBjb21wbGFuYXR1c1wiICAgICAgICAgICAgICBcImp1bmN1cyBhY3V0aWZsb3J1c1wiICAgICAgICAgICAgICAgICBcImxlbW5hIG1pbnV0YVwiICAgICAgICAgICAgICAgICAgICAgIFxuWzI4XSBcImxlcHRvZGljdHl1bSByaXBhcml1bVwiICAgICAgICAgICAgICBcImx5bW5hZWEgKHN0YWduaWNvbGEpIGFnZ1wiICAgICAgICAgICBcImx5bW5hZWEgc3RhZ25hbGlzXCIgICAgICAgICAgICAgICAgIFxuWzMxXSBcIm15cmlvcGh5bGx1bSBzcGljYXR1bVwiICAgICAgICAgICAgICBcIm94eWxvbWEgZWxlZ2Fuc1wiICAgICAgICAgICAgICAgICAgICBcInBlcnNpY2FyaWEgYW1waGliaWFcIiAgICAgICAgICAgICAgIFxuWzM0XSBcInBlcnNpY2FyaWEgcGVyc2ljYXJpYVwiICAgICAgICAgICAgICBcInBocmFnbWl0ZXMgYXVzdHJhbGlzXCIgICAgICAgICAgICAgICBcInBoeXNhIGZvbnRpbmFsaXNcIiAgICAgICAgICAgICAgICAgIFxuWzM3XSBcInBpc2lkaXVtIHNwXCIgICAgICAgICAgICAgICAgICAgICAgICBcInBsYW5vcmJhcml1cyBjb3JuZXVzXCIgICAgICAgICAgICAgICBcInBsYW5vcmJpcyBwbGFub3JiaXNcIiAgICAgICAgICAgICAgIFxuWzQwXSBcInBvdGFtb2dldG9uIGNvbG9yYXR1c1wiICAgICAgICAgICAgICBcInBvdGVudGlsbGEgYW5zZXJpbmFcIiAgICAgICAgICAgICAgICBcInJhZGl4IGF1cmljdWxhcmlhXCIgICAgICAgICAgICAgICAgIFxuWzQzXSBcInJhZGl4IGJhbHRoaWNhXCIgICAgICAgICAgICAgICAgICAgICBcInJhbnVuY3VsdXMgc2FyZG91c1wiICAgICAgICAgICAgICAgICBcInJhbnVuY3VsdXMgc2NsZXJhdHVzXCIgICAgICAgICAgICAgIFxuWzQ2XSBcInJhbnVuY3VsdXMgc3BcIiAgICAgICAgICAgICAgICAgICAgICBcInJ1bWV4IGNvbmdsb21lcmF0dXNcIiAgICAgICAgICAgICAgICBcInNhbGl4IHNwXCIgICAgICAgICAgICAgICAgICAgICAgICAgIFxuWzQ5XSBcInNlZ21lbnRpbmEgbml0aWRhXCIgICAgICAgICAgICAgICAgICBcInNpbGF1bSBzaWxhdXNcIiAgICAgICAgICAgICAgICAgICAgICBcInNwaGFlcml1bSBjb3JuZXVtXCIgICAgICAgICAgICAgICAgIFxuWzUyXSBcInN1Y2NpbmVpZCBzcFwiICAgICAgICAgICAgICAgICAgICAgICBcInRyaWZvbGl1bSBmcmFnaWZlcnVtXCIgICAgICAgICAgICAgICBcInVydGljYSBkaW9pY2Egc3Vic3AuIGdhbGVvcHNpZm9saWFcIlxuWzU1XSBcInZhbHZhdGEgY3Jpc3RhdGFcIiAgICAgICAgICAgICAgICAgICBcInpvbml0b2lkZXMgbml0aWR1c1wiICAgICAgICAgICAgICAgIFxuIn0= -->
+<pre><code> [1] &quot;acroloxus lacustris&quot;                &quot;agrostis stolonifera&quot;               &quot;alisma plantago-aquatica&quot;          
+ [4] &quot;alisma sp&quot;                          &quot;alopecurus geniculatus&quot;             &quot;anacamptis pyramidalis&quot;            
+ [7] &quot;anisus vortex&quot;                      &quot;argyroneta aquatica&quot;                &quot;arianta arbustorum&quot;                
+[10] &quot;bathyomphalus contortus&quot;            &quot;bithynia leachii&quot;                   &quot;bithynia tentaculata&quot;              
+[13] &quot;bolboschoenus maritimus&quot;            &quot;carex riparia&quot;                      &quot;cepaea nemoralis&quot;                  
+[16] &quot;chara globularis&quot;                   &quot;chara vulgaris&quot;                     &quot;crataegus monogyna&quot;                
+[19] &quot;dytiscus marginalis&quot;                &quot;elodea canadensis&quot;                  &quot;epilobium parviflorum&quot;             
+[22] &quot;euconulus cf. fulvus agg&quot;           &quot;filamentous algae&quot;                  &quot;gyraulus crista&quot;                   
+[25] &quot;hippeutis complanatus&quot;              &quot;juncus acutiflorus&quot;                 &quot;lemna minuta&quot;                      
+[28] &quot;leptodictyum riparium&quot;              &quot;lymnaea (stagnicola) agg&quot;           &quot;lymnaea stagnalis&quot;                 
+[31] &quot;myriophyllum spicatum&quot;              &quot;oxyloma elegans&quot;                    &quot;persicaria amphibia&quot;               
+[34] &quot;persicaria persicaria&quot;              &quot;phragmites australis&quot;               &quot;physa fontinalis&quot;                  
+[37] &quot;pisidium sp&quot;                        &quot;planorbarius corneus&quot;               &quot;planorbis planorbis&quot;               
+[40] &quot;potamogeton coloratus&quot;              &quot;potentilla anserina&quot;                &quot;radix auricularia&quot;                 
+[43] &quot;radix balthica&quot;                     &quot;ranunculus sardous&quot;                 &quot;ranunculus scleratus&quot;              
+[46] &quot;ranunculus sp&quot;                      &quot;rumex conglomeratus&quot;                &quot;salix sp&quot;                          
+[49] &quot;segmentina nitida&quot;                  &quot;silaum silaus&quot;                      &quot;sphaerium corneum&quot;                 
+[52] &quot;succineid sp&quot;                       &quot;trifolium fragiferum&quot;               &quot;urtica dioica subsp. galeopsifolia&quot;
+[55] &quot;valvata cristata&quot;                   &quot;zonitoides nitidus&quot;                </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJTcGVjaWVzIGluIGJhc2VsaW5lIG5vdCBpbiBwaWxvdDpcIilcbmBgYCJ9 -->
+<pre class="r"><code>print(&quot;Species in baseline not in pilot:&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU3BlY2llcyBpbiBiYXNlbGluZSBub3QgaW4gcGlsb3Q6XCJcbiJ9 -->
+<pre><code>[1] &quot;Species in baseline not in pilot:&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3BwX2JzbG5bIXNwcF9ic2xuICVpbiUgc3BwX3BsdF9jb21wXSAlPiUgc29ydCgpXG5gYGAifQ== -->
+<pre class="r"><code>spp_bsln[!spp_bsln %in% spp_plt_comp] %&gt;% sort()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcImFsZ2FlIGZpbGltZW50b3VzXCIgICAgICAgICAgIFwiYWxpc21hIGxhbmNlb2xhdGFcIiAgICAgICAgICAgXCJhbGlzbWEgcGxhbnRhZ28gYXF1YXRpY2FcIiAgICBcImFwaXVtIG5vZGlmbG9ydW1cIiAgICAgICAgICAgXG4gWzVdIFwiYmFsZGVsbGlhIHJhbnVuY3Vsb2lkZXNcIiAgICAgXCJiYXJiYXJlYSB2dWxnYXJpc1wiICAgICAgICAgICBcImJ1bGJvc2NoYWVudXMgbWFyaXRpbXVzXCIgICAgIFwiYnV0b211cyB1bWJlbGxhdHVzXCIgICAgICAgICBcbiBbOV0gXCJjYWxsaXRyaWNoZSBvYnR1c2FuZ3VsYVwiICAgICBcImNhbGxpdHJpY2hlIHN0YWduYWxpc1wiICAgICAgIFwiY2FsdGhhIHBhbHVzdHJpc1wiICAgICAgICAgICAgXCJjYXJkYW1pbmUgcHJhdGVuc2lzXCIgICAgICAgIFxuWzEzXSBcImNhcmV4IGFjdXRpZm9ybWlzL3JpcGFyaWFcIiAgIFwiY2FyZXggZGlzdGFuc1wiICAgICAgICAgICAgICAgXCJjYXJleCBoaXJ0YVwiICAgICAgICAgICAgICAgICBcImNhcmV4IHBhbmljdWxhdGFcIiAgICAgICAgICAgXG5bMTddIFwiY2FyZXggcGVuZHVsYVwiICAgICAgICAgICAgICAgXCJjZXJhdG9waHlsbHVtIGRlbWVyc3VtXCIgICAgICBcImNoYXJhIHNwLlwiICAgICAgICAgICAgICAgICAgIFwiY2hlbm9wb2RpdW0gYWxiYVwiICAgICAgICAgICBcblsyMV0gXCJlbnRlcm9tb3JwaGFcIiAgICAgICAgICAgICAgICBcImVxdWlzZXR1bSBmbHV2aWF0aWxlXCIgICAgICAgIFwiZmlsaXBlbmR1bGEgdWxtYXJpYVwiICAgICAgICAgXCJnYWxpdW0gcGFsdXN0cmVcIiAgICAgICAgICAgIFxuWzI1XSBcImdseWNlcmlhIHBsaWNhdGFcIiAgICAgICAgICAgIFwiaGlwcHVyaXMgdnVsZ2FyaXNcIiAgICAgICAgICAgXCJoeWRyb2NvdHlsZSB2dWxnYXJpc1wiICAgICAgICBcImh5cGVyaWN1bSB0ZXRyYXB0ZXJ1bVwiICAgICAgXG5bMjldIFwianVuY3VzIGJ1Zm9uaXVzXCIgICAgICAgICAgICAgXCJqdW5jdXMgZWZmdXN1c1wiICAgICAgICAgICAgICBcImp1bmN1cyBnZXJhcmRpaVwiICAgICAgICAgICAgIFwibGF0aHlydXMgcHJhdGVuc2lzXCIgICAgICAgICBcblszM10gXCJsZW1hbiBtaW51c2N1bGFcIiAgICAgICAgICAgICBcImxlbW5hIGdpYmJhXCIgICAgICAgICAgICAgICAgIFwibHljaG5pcyBmbG9zLWN1Y3VsaVwiICAgICAgICAgXCJseWNvcHVzIGV1cm9wYWV1c1wiICAgICAgICAgIFxuWzM3XSBcImx5dGhydW0gc2FsaWNhcmlhXCIgICAgICAgICAgIFwibXlvc290aXMgY2Flc3BpdG9zYVwiICAgICAgICAgXCJteXJpb3BoeWxsdW0gIHZlcnRpY2lsbGF0dW1cIiBcInBoYWxhcmlzIGFydW5kaW5hY2VhXCIgICAgICAgXG5bNDFdIFwicGhyYWdtaXRlcyBhdXN0cmFsaXMqXCIgICAgICAgXCJwb2x5Z29udW0gYW1waGliaXVtXCIgICAgICAgICBcInBvbHlnb251bSBoeWRyb3BpcGVyXCIgICAgICAgIFwicG9seWdvbnVtIGxhcGF0aGlmb2xpdW1cIiAgICBcbls0NV0gXCJwb2x5Z29udW0gcGVyc2ljYXJpYVwiICAgICAgICBcInBvdGFtb2dldG9uIGNyaXNwdXNcIiAgICAgICAgIFwicG90YW1vZ2V0b24gZnJpZXNpaVwiICAgICAgICAgXCJwb3RhbW9nZXRvbiBsdWNlbnNcIiAgICAgICAgIFxuWzQ5XSBcInBvdGFtb2dldG9uIHBlY3RpbmF0dXNcIiAgICAgIFwicmFudW5jdWx1cyBjaXJjaW5hdHVzXCIgICAgICAgXCJyYW51bmN1bHVzIHNjZWxlcmF0dXNcIiAgICAgICBcInNjaXJwdXMgbGFjdXN0cmlzXCIgICAgICAgICAgXG5bNTNdIFwic2Nyb3BodWxhcmlhIGFxdWF0aWNhXCIgICAgICAgXCJzcGlyb2RlbGxhIHBvbHlyaGl6YVwiICAgICAgICBcInV0cmljdWxhcmlhIHZ1bGdhcmlzXCIgICAgICAgIFwidmVyb25pY2EgYW5hZ2FsaXMtYXF1YXRpY2FcIiBcbls1N10gXCJ2ZXJvbmljYSBiZWNjYWJ1bmdhXCIgICAgICAgICBcInZlcm9uaWNhIHNjdXRlbGxhdGFcIiAgICAgICAgIFwiemFubmljaGVsaWEgcGFsdXN0cmlzXCIgICAgICBcbiJ9 -->
+<pre><code> [1] &quot;algae filimentous&quot;           &quot;alisma lanceolata&quot;           &quot;alisma plantago aquatica&quot;    &quot;apium nodiflorum&quot;           
+ [5] &quot;baldellia ranunculoides&quot;     &quot;barbarea vulgaris&quot;           &quot;bulboschaenus maritimus&quot;     &quot;butomus umbellatus&quot;         
+ [9] &quot;callitriche obtusangula&quot;     &quot;callitriche stagnalis&quot;       &quot;caltha palustris&quot;            &quot;cardamine pratensis&quot;        
+[13] &quot;carex acutiformis/riparia&quot;   &quot;carex distans&quot;               &quot;carex hirta&quot;                 &quot;carex paniculata&quot;           
+[17] &quot;carex pendula&quot;               &quot;ceratophyllum demersum&quot;      &quot;chara sp.&quot;                   &quot;chenopodium alba&quot;           
+[21] &quot;enteromorpha&quot;                &quot;equisetum fluviatile&quot;        &quot;filipendula ulmaria&quot;         &quot;galium palustre&quot;            
+[25] &quot;glyceria plicata&quot;            &quot;hippuris vulgaris&quot;           &quot;hydrocotyle vulgaris&quot;        &quot;hypericum tetrapterum&quot;      
+[29] &quot;juncus bufonius&quot;             &quot;juncus effusus&quot;              &quot;juncus gerardii&quot;             &quot;lathyrus pratensis&quot;         
+[33] &quot;leman minuscula&quot;             &quot;lemna gibba&quot;                 &quot;lychnis flos-cuculi&quot;         &quot;lycopus europaeus&quot;          
+[37] &quot;lythrum salicaria&quot;           &quot;myosotis caespitosa&quot;         &quot;myriophyllum  verticillatum&quot; &quot;phalaris arundinacea&quot;       
+[41] &quot;phragmites australis*&quot;       &quot;polygonum amphibium&quot;         &quot;polygonum hydropiper&quot;        &quot;polygonum lapathifolium&quot;    
+[45] &quot;polygonum persicaria&quot;        &quot;potamogeton crispus&quot;         &quot;potamogeton friesii&quot;         &quot;potamogeton lucens&quot;         
+[49] &quot;potamogeton pectinatus&quot;      &quot;ranunculus circinatus&quot;       &quot;ranunculus sceleratus&quot;       &quot;scirpus lacustris&quot;          
+[53] &quot;scrophularia aquatica&quot;       &quot;spirodella polyrhiza&quot;        &quot;utricularia vulgaris&quot;        &quot;veronica anagalis-aquatica&quot; 
+[57] &quot;veronica beccabunga&quot;         &quot;veronica scutellata&quot;         &quot;zannichelia palustris&quot;      </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>export to csv</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGVfY3N2KHNwcF9jb21wLCBcImRhdGEvc3BlY2llc19jb21wYXJpc29uLmNzdlwiKVxuXG5gYGAifQ== -->
+<pre class="r"><code>write_csv(spp_comp, &quot;data/species_comparison.csv&quot;)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiY2Fubm90IG9wZW4gZmlsZSAnZGF0YS9zcGVjaWVzX2NvbXBhcmlzb24uY3N2JzogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeUVycm9yIGluIG9wZW4uY29ubmVjdGlvbihwYXRoLCBcIndiXCIpIDogY2Fubm90IG9wZW4gdGhlIGNvbm5lY3Rpb25cbiJ9 -->
+<pre><code>cannot open file 'data/species_comparison.csv': No such file or directoryError in open.connection(path, &quot;wb&quot;) : cannot open the connection</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIjAxX2RhdGFfY2xlYW5pbmciDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KHJlYWR4bCkNCmBgYA0KDQoNCg0KYGBge3J9DQojIGxvYWQgZGF0YQ0KZGF0YV9ic2xuIDwtIHJlYWRfY3N2KCIuLi9kYXRhL2RhdGFfYnNsbi5jc3YiKQ0KZGF0YV9wbHQgPC0gcmVhZF9jc3YoIi4uL2RhdGEvZGF0YV9wbHQuY3N2IikNCg0KZGl0Y2hfYnNsbiA8LSByZWFkX2NzdigiLi4vZGF0YS9kaXRjaF9ic2xuLmNzdiIpDQpkaXRjaF9wbHQgPC0gcmVhZF9jc3YoIi4uL2RhdGEvZGl0Y2hfcGx0LmNzdiIpDQpgYGANCg0KDQpIb3cgbWFueSBzcGVjaWVzIG5hbWVzIGluIHRoZSBuZXcgZGF0YSBtYXRjaCBuYW1lcyBpbiB0aGUgb2xkIGRhdGE6DQoNCmBgYHtyfQ0KdGFibGUoZGF0YV9wbHQkc3BlY2llcyAlaW4lIGRhdGFfYnNsbiRzcGVjaWVzKQ0KYGBgDQpKZWVwZXJzLi4uDQoNCg0KZGl0Y2hlcyBpbiBwaWxvdA0KYGBge3J9DQpjb3VudChkYXRhX3BsdCwgZGl0Y2hfaWQpDQpgYGANCg0KDQoNCg0KDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIjAxX2RhdGFfY2xlYW5pbmciDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KHJlYWR4bCkNCmBgYA0KDQoNCg0KYGBge3J9DQojIGxvYWQgZGF0YQ0KZGF0YV9ic2xuIDwtIHJlYWRfY3N2KCIuLi9kYXRhL2RhdGFfYnNsbi5jc3YiKQ0KZGF0YV9wbHQgPC0gcmVhZF9jc3YoIi4uL2RhdGEvZGF0YV9wbHQuY3N2IikNCg0KZGl0Y2hfYnNsbiA8LSByZWFkX2NzdigiLi4vZGF0YS9kaXRjaF9ic2xuLmNzdiIpDQpkaXRjaF9wbHQgPC0gcmVhZF9jc3YoIi4uL2RhdGEvZGl0Y2hfcGx0LmNzdiIpDQpgYGANCg0KIyMgRGl0Y2hlcw0KDQp0aWR5IHVwIE4vQSBpbiBwaWxvdA0KYGBge3J9DQpkaXRjaF9wbHQgPC0gZGl0Y2hfcGx0ICU+JSBtdXRhdGUoZGl0Y2hfaWQgPSByZWNvZGUoZGl0Y2hfaWQsICJuL2EiID0gTkFfY2hhcmFjdGVyXykpDQpkYXRhX3BsdCA8LSBkYXRhX3BsdCAlPiUgbXV0YXRlKGRpdGNoX2lkID0gcmVjb2RlKGRpdGNoX2lkLCAibi9hIiA9IE5BX2NoYXJhY3Rlcl8pKQ0KYGBgDQoNCmRpdGNoZXMgaW4gcGlsb3QNCmBgYHtyfQ0KY291bnQoZGF0YV9wbHQsIGRpdGNoX2lkKQ0KYGBgDQoNCg0KaG93IG1hbnkgZGl0Y2hlcyBudW1iZXJlZCBpbiBwaWxvdA0KYGBge3J9DQpkaXRjaF9wbHRfY29tcCA8LSBkaXRjaF9wbHQgJT4lIGZpbHRlcihkaXRjaF9pZCAhPSBpcy5uYShkaXRjaF9pZCkpDQpwYXN0ZSgidGhlcmUgYXJlIiwgbnJvdyhkaXRjaF9wbHRfY29tcCksICJudW1iZXJlZCBkaXRjaGVzIGluIHRoZSBwaWxvdCBkYXRhIikNCmRpdGNoX3BsdF9jb21wJGRpdGNoX2lkDQpgYGANCg0KYGBge3J9DQpkYXRhX3BsdF9jb21wIDwtIGRhdGFfcGx0ICU+JSBmaWx0ZXIoZGl0Y2hfaWQgIT0gaXMubmEoZGl0Y2hfaWQpKQ0KYGBgDQoNCg0KY2hlY2sgZGl0Y2ggbnVtYmVycyBpbiBwaWxvdCBleGlzdCBpbiBiYXNlbGluZQ0KYGBge3J9DQpkaXRjaF9wbHRfY29tcCAlPiUgbXV0YXRlKGluX2Jhc2VsaW5lID0gaWZlbHNlKGRpdGNoX2lkICVpbiUgZGl0Y2hfYnNsbiRkaXRjaF9pZCwgIjEiLCAiMCIpKSAlPiUgY291bnQoaW5fYmFzZWxpbmUpDQpgYGANCg0KIyMgU3BlY2llcw0KDQpob3cgbWFueSBzcGVjaWVzIGRvIHdlIGhhdmUNCg0KYGBge3J9DQpzcHBfYnNsbiA8LSB0b2xvd2VyKHVuaXF1ZShkYXRhX2JzbG4kc3BlY2llcykpDQpzcHBfcGx0IDwtIHRvbG93ZXIodW5pcXVlKGRhdGFfcGx0JHNwZWNpZXMpKQ0Kc3BwX3BsdF9jb21wIDwtIHRvbG93ZXIodW5pcXVlKGRhdGFfcGx0X2NvbXAkc3BlY2llcykpDQoNCnBhc3RlKCJJbiB0aGUgYmFzZWxpbmUgdGhlcmUgYXJlIiwgbGVuZ3RoKHNwcF9ic2xuKSwgInVuaXF1ZSBzcGVjaWVzIG5hbWVzIikNCnBhc3RlKCJJbiB0aGUgcGlsb3QgdGhlcmUgYXJlIiwgbGVuZ3RoKHNwcF9wbHQpLCAidW5pcXVlIHNwZWNpZXMgbmFtZXMiKQ0KcGFzdGUoIkluIHRoZSBwaWxvdCAobnVtYmVyZWQgZGl0Y2hlcykgdGhlcmUgYXJlIiwgbGVuZ3RoKHNwcF9wbHRfY29tcCksICJ1bmlxdWUgc3BlY2llcyBuYW1lcyIpDQpgYGANCg0KDQpIb3cgbWFueSBzcGVjaWVzIG5hbWVzIGluIHRoZSBuZXcgZGF0YSBtYXRjaCBuYW1lcyBpbiB0aGUgb2xkIGRhdGE6DQoNCmBgYHtyfQ0KdGFibGUoc3BwX3BsdCAlaW4lIHNwcF9ic2xuKQ0KYGBgDQpKZWVwZXJzLi4uDQoNCmxldHMganVzdCBsb29rIGF0IHRoZSBudW1iZXJlZCBkaXRjaGVzOiANCmBgYHtyfQ0KdGFibGUoc3BwX3BsdF9jb21wICVpbiUgc3BwX2JzbG4pDQpgYGANCg0KSmVlcGVycyBzdGlsbC4gIFNvIGxldHMgbG9vayBhdCB0aGVzZSBzcGVjaWVzOg0KDQpgYGB7cn0NCnByaW50KCJTcGVjaWVzIGluIGJvdGggZGF0YXNldHM6IikNCnNwcF9wbHRfY29tcFtzcHBfcGx0X2NvbXAgJWluJSBzcHBfYnNsbl0gJT4lIHNvcnQoKQ0KYGBgDQoNCmBgYHtyfQ0KcHJpbnQoIlNwZWNpZXMgaW4gcGlsb3Qgbm90IGluIGJhc2VsaW5lOiIpDQpzcHBfcGx0X2NvbXBbIXNwcF9wbHRfY29tcCAlaW4lIHNwcF9ic2xuXSAlPiUgc29ydCgpDQpgYGANCg0KYGBge3J9DQpwcmludCgiU3BlY2llcyBpbiBiYXNlbGluZSBub3QgaW4gcGlsb3Q6IikNCnNwcF9ic2xuWyFzcHBfYnNsbiAlaW4lIHNwcF9wbHRfY29tcF0gJT4lIHNvcnQoKQ0KYGBgDQoNCmV4cG9ydCB0byBjc3YNCmBgYHtyfQ0Kc3BwX2JzbG5fdCA8LSBkYXRhLmZyYW1lKHNwZWNpZXMgPSBzcHBfYnNsbiwgYmFzZWxpbmUgPSAiWSIpDQpzcHBfcGx0X3QgPC0gZGF0YS5mcmFtZShzcGVjaWVzID0gc3BwX3BsdCwgcGlsb3QgPSAiWSIpDQpzcHBfcGx0X2NvbXBfdCA8LSBkYXRhLmZyYW1lKHNwZWNpZXMgPSBzcHBfcGx0X2NvbXAsIHBpbG90X25icmQgPSAiWSIpDQpzcHBfY29tcCA8LSBzcHBfYnNsbl90ICU+JSBmdWxsX2pvaW4oc3BwX3BsdF90KSAlPiUgZnVsbF9qb2luKHNwcF9wbHRfY29tcF90KSAlPiUgYXJyYW5nZShzcGVjaWVzKQ0Kcm0oc3BwX2JzbG5fdCwgc3BwX3BsdF90LCBzcHBfcGx0X2NvbXBfdCkNCndyaXRlX2NzdihzcHBfY29tcCwgIi4uL2RhdGEvc3BlY2llc19jb21wYXJpc29uLmNzdiIpDQpgYGANCg0KDQoNCg0KDQoNCg0KDQoNCg0K</div>
 
 
 

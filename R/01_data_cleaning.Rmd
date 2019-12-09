@@ -20,19 +20,93 @@ ditch_bsln <- read_csv("../data/ditch_bsln.csv")
 ditch_plt <- read_csv("../data/ditch_plt.csv")
 ```
 
+## Ditches
 
-How many species names in the new data match names in the old data:
-
+tidy up N/A in pilot
 ```{r}
-table(data_plt$species %in% data_bsln$species)
+ditch_plt <- ditch_plt %>% mutate(ditch_id = recode(ditch_id, "n/a" = NA_character_))
+data_plt <- data_plt %>% mutate(ditch_id = recode(ditch_id, "n/a" = NA_character_))
 ```
-Jeepers...
-
 
 ditches in pilot
 ```{r}
 count(data_plt, ditch_id)
 ```
+
+
+how many ditches numbered in pilot
+```{r}
+ditch_plt_comp <- ditch_plt %>% filter(ditch_id != is.na(ditch_id))
+paste("there are", nrow(ditch_plt_comp), "numbered ditches in the pilot data")
+ditch_plt_comp$ditch_id
+```
+
+```{r}
+data_plt_comp <- data_plt %>% filter(ditch_id != is.na(ditch_id))
+```
+
+
+check ditch numbers in pilot exist in baseline
+```{r}
+ditch_plt_comp %>% mutate(in_baseline = ifelse(ditch_id %in% ditch_bsln$ditch_id, "1", "0")) %>% count(in_baseline)
+```
+
+## Species
+
+how many species do we have
+
+```{r}
+spp_bsln <- tolower(unique(data_bsln$species))
+spp_plt <- tolower(unique(data_plt$species))
+spp_plt_comp <- tolower(unique(data_plt_comp$species))
+
+paste("In the baseline there are", length(spp_bsln), "unique species names")
+paste("In the pilot there are", length(spp_plt), "unique species names")
+paste("In the pilot (numbered ditches) there are", length(spp_plt_comp), "unique species names")
+```
+
+
+How many species names in the new data match names in the old data:
+
+```{r}
+table(spp_plt %in% spp_bsln)
+```
+Jeepers...
+
+lets just look at the numbered ditches: 
+```{r}
+table(spp_plt_comp %in% spp_bsln)
+```
+
+Jeepers still.  So lets look at these species:
+
+```{r}
+print("Species in both datasets:")
+spp_plt_comp[spp_plt_comp %in% spp_bsln] %>% sort()
+```
+
+```{r}
+print("Species in pilot not in baseline:")
+spp_plt_comp[!spp_plt_comp %in% spp_bsln] %>% sort()
+```
+
+```{r}
+print("Species in baseline not in pilot:")
+spp_bsln[!spp_bsln %in% spp_plt_comp] %>% sort()
+```
+
+export to csv
+```{r}
+spp_bsln_t <- data.frame(species = spp_bsln, baseline = "Y")
+spp_plt_t <- data.frame(species = spp_plt, pilot = "Y")
+spp_plt_comp_t <- data.frame(species = spp_plt_comp, pilot_nbrd = "Y")
+spp_comp <- spp_bsln_t %>% full_join(spp_plt_t) %>% full_join(spp_plt_comp_t) %>% arrange(species)
+rm(spp_bsln_t, spp_plt_t, spp_plt_comp_t)
+write_csv(spp_comp, "../data/species_comparison.csv")
+```
+
+
+
 
 
 
