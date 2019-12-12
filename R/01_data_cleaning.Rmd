@@ -56,9 +56,9 @@ ditch_plt_comp %>% mutate(in_baseline = ifelse(ditch_id %in% ditch_bsln$ditch_id
 how many species do we have
 
 ```{r}
-spp_bsln <- tolower(unique(data_bsln$species))
-spp_plt <- tolower(unique(data_plt$species))
-spp_plt_comp <- tolower(unique(data_plt_comp$species))
+spp_bsln <- unique(data_bsln$species)
+spp_plt <- unique(data_plt$species)
+spp_plt_comp <- unique(data_plt_comp$species)
 
 paste("In the baseline there are", length(spp_bsln), "unique species names")
 paste("In the pilot there are", length(spp_plt), "unique species names")
@@ -104,11 +104,126 @@ spp_comp <- spp_bsln_t %>% full_join(spp_plt_t) %>% full_join(spp_plt_comp_t) %>
 rm(spp_bsln_t, spp_plt_t, spp_plt_comp_t)
 write_csv(spp_comp, "../data/species_comparison.csv")
 ```
+## Match to GBIF
+
+I did this in another script in which I also matched plabryatt to gbif. 
+
+https://github.com/bogsnork/species_nbn_match 
+
+
+## Match to NBN
+
+
+```{r}
+library(tidyverse)
+```
+
+
+
+```{r}
+spp_comp <- read_csv("../data/species_comparison.csv"); spp_comp
+```
+
+## received cleaned species lookup from MC
+
+
+```{r}
+library(readxl)
+spp_comp_annotated <- read_excel("../data/Species_names_MC annotations.xlsx") %>% 
+  select(species_verbatim = species, 
+         species_nbn = `current iRecord nomenclature`, 
+         taxon_grp = 'taxonomic group',
+         everything())
+irecord_plt <- read_csv("../data/iRecord_download_MC_records.csv")
+```
+
+
+
+check overlap between pilot data and irecord data
+```{r}
+table(data_plt$gridref %in% irecord_plt$`Original map ref`)
+```
+all there
+
+Write nbn codes to matched names
+
+```{r}
+tvks <- select(irecord_plt, Species, TVK = TaxonVersionKey) %>% distinct()
+spp_lookup <- spp_comp_annotated %>% 
+  left_join(tvks, by = c("species_nbn" = "Species"))
+```
+
+at this stage only the species present in pilot have TVKs.  In a way it doesn't matter because MC has checked for and found misspelled duplicates.  However, it may be an issue later.  
+
+
+
+## Merge gbif lookups 
+I did the lookup here: https://github.com/bogsnork/species_nbn_match 
+
+```{r}
+spp_comp_gbif <- read_csv("../data/species_comparison_gbif.csv")
+```
+
+```{r}
+spp_lookup <- spp_lookup %>% 
+  left_join(spp_comp_gbif, by=c("species_verbatim" = "species"))
+```
 
 
 
 
 
+Write matched names to data
+
+```{r}
+data_bsln_m <- data_bsln %>% 
+  left_join(select(spp_lookup, species_verbatim, species_nbn, TVK, 
+                   species_gbif = gbif.matched_name, gbif.taxon_id, 
+                   taxon_grp), by = c("species" = "species_verbatim"))
+
+data_plt_m <- data_plt %>% 
+  left_join(select(spp_lookup, species_verbatim, species_nbn, TVK,
+                   species_gbif = gbif.matched_name, gbif.taxon_id,  
+                   taxon_grp), by = c("species" = "species_verbatim"))
+```
+
+subset data for analyis
+```{r}
+data_bsln_sub <- data_bsln_m %>% 
+  filter(present != is.na(present)) %>% 
+  filter(taxon_grp == "vascular plant") %>% 
+  select(spp = species_nbn, ditch_id, abund = perc_freq, TVK,
+         species_gbif, gbif.taxon_id,
+         taxon_grp) %>% 
+  mutate(ditch_id = as.character(ditch_id), 
+         abund = as.character(abund))
+
+
+data_plt_sub <- data_plt_m %>% 
+  filter(ditch_id != is.na(ditch_id)) %>% 
+  filter(taxon_grp == "vascular plant") %>% 
+  select(spp = species_nbn, ditch_id, abund = plant_dafor, TVK,
+         species_gbif, gbif.taxon_id, 
+         taxon_grp) %>% 
+  mutate(ditch_id = as.character(ditch_id), 
+         abund = as.character(abund))
+
+```
+
+combind analysis data
+```{r}
+data_anls <- bind_rows(data_bsln_sub, data_plt_sub)
+```
+
+
+
+
+
+
+```{r}
+write_csv(data_anls, "../data/data_analysis.csv")
+write_csv(spp_lookup, "../data/spp_lookup.csv")
+```
 
 
 

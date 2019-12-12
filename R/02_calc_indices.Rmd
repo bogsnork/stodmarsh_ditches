@@ -1,0 +1,47 @@
+---
+title: "Calculate indices"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+```
+
+
+
+```{r}
+data <- read_csv("../data/data_analysis.csv")
+plabryatt <- read_csv("../data/PLABRYATT_v4.csv")
+spp_lookup <- read_csv("../data/spp_lookup.csv")
+```
+
+quick check if plabryatt species list works
+```{r}
+in_plabryatt <- spp_lookup$species_nbn %in% plabryatt$`PLABRYATT_VTA NAME`
+table(spp_lookup$species_nbn[which(spp_lookup$taxon_grp == "vascular plant")] %in% plabryatt$`PLABRYATT_VTA NAME`)
+table(spp_lookup$taxon_grp[!in_plabryatt])
+```
+
+pain in the xxx as usual....
+
+
+what to do...
+
+ok, so I matched PLABRYATT with gibif using taxize and same for species_comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
