@@ -212,7 +212,7 @@ data_plt_sub <- data_plt_m %>%
 
 combind analysis data
 ```{r}
-data_anls <- bind_rows(data_bsln_sub, data_plt_sub)
+data_anls <- bind_rows(bsln = data_bsln_sub, plt = data_plt_sub, .id = "survey")
 ```
 
 
@@ -222,7 +222,7 @@ data_anls <- bind_rows(data_bsln_sub, data_plt_sub)
 
 ```{r}
 write_csv(data_anls, "../data/data_analysis.csv")
-write_csv(spp_lookup, "../data/spp_lookup.csv")
+#write_csv(spp_lookup, "../data/spp_lookup.csv")
 ```
 
 
