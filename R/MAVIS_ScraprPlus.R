@@ -25,17 +25,22 @@
 #setwd("G:/@Projects/LTMN/Data/LTMN_Data/06_Raw_Analysis")
 
 #read MAVIS output into R
-raw = read.delim("OWH2012_MAVIS_output_for_R.txt")
-raw
+path <- "data"
+filename <- "data_from_MAVIS_stodm_bsln_edt.txt"
+
+raw = read.delim(file.path(path, filename))
+#raw
+
+
 
 #create vector of all lines containing plot numbers (note ^ means start of str)
 quad.lines = as.character(raw[grep("^Plot", raw$data),])
 quad.lines = as.character(quad.lines)
-quad.lines; length(quad.lines)
+#quad.lines; length(quad.lines)
 
 #extract values from their character positions into variable vectors
 quad  = as.character(substr(quad.lines, 6,8))
-quad
+#quad
 
 #Ellenberg values
 
@@ -71,7 +76,9 @@ survey_year = as.character(rep(raw[3,],nrow(traits)))
 
 #export data frame as csv file
 site.year.traits = cbind(survey_year, site_code, quad, traits)
-write.csv(site.year.traits, file = "traits.csv", row.names = F)
+write.csv(site.year.traits, 
+          file = file.path(path, paste(site_code[1], survey_year[1], "traits.csv", sep = "_")), 
+          row.names = F)
 
 
 #Graphing: present as boxplots
@@ -79,7 +86,7 @@ write.csv(site.year.traits, file = "traits.csv", row.names = F)
 #transform traits to allow multiple boxpl.
 traitst = t(traits)
 #create title string
-boxplot.title = sprintf("%s: Cover weighted mean traits", site_name) 
+boxplot.title = sprintf("%s: mean traits", site_name) 
 #create boxplot
 boxplot.matrix(traitst, use.cols = F, 
                main=boxplot.title,  ylab="Mean value", xlab="Indicator",
@@ -93,7 +100,7 @@ boxplot.matrix(traitst, use.cols = F,
 ##########################
 
 
-raw2 = read.table("OWH2012_MAVIS_NVC_out_for_R.txt", header = F)
+raw2 = read.table("data/data_from_MAVIS_stodm_plt_edt.txt", header = F)
 
 
 #calculate number of groups by counting lines that start with "Group"

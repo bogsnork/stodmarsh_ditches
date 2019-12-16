@@ -31,17 +31,74 @@ what to do...
 ok, so I matched PLABRYATT with gibif using taxize and same for species_comparison
 
 
+```{r}
+plabryatt <- read_csv("../data/PLABRYATT_v5.csv")
+```
+
+```{r}
+in_plabryatt <- spp_lookup$gbif.taxon_id %in% plabryatt$gbif.taxon_id
+table(spp_lookup$gbif.taxon_id[which(spp_lookup$taxon_grp == "vascular plant")] %in% plabryatt$gbif.taxon_id)
+table(spp_lookup$taxon_grp[!in_plabryatt])
+```
+
+...seems to have got worse.  OK, need to lookup accepted names from GBIF taxon_id
 
 
 
+... still struggling to automate this.  Instead did manual matching using MAVIS helper doc Preparing_data_for_MAVIS.xls
+
+```{r}
+spp_lookup_MAVIS <- readxl::read_xls("../data/Preparing_data_for_MAVIS_stodmarsh.xls", sheet = 1)
+spp_lookup_MAVIS
+
+```
+
+```{r}
+spp_lookup <- spp_lookup %>% left_join(select(spp_lookup_MAVIS, species_verbatim, species_MAVIS))
+#write_csv(spp_lookup, "../data/spp_lookup.csv")
+```
+```{r}
+spp_data <- read_csv("../data/data_analysis.csv")
+```
+
+```{r}
+spp_lookup <- read_csv("../data/spp_lookup.csv")
+```
+
+```{r}
+spp_data <- spp_data %>%   left_join(select(spp_lookup, species_verbatim, species_MAVIS), by = c("spp" = "species_verbatim"))
+
+```
+
+check we've got all species in the lookup
+```{r}
+spp_data %>% select(spp, species_MAVIS) %>% 
+  filter(is.na(species_MAVIS))
+  # filter(species_MAVIS == "NA")
+  #  filter(!species_MAVIS %in% spp_lookup$species_MAVIS)
+
+
+```
 
 
 
+format for MAVIS
+```{r}
+data_for_MAVIS_bsln <- spp_data %>% 
+  filter(survey == "bsln") %>% 
+  select(ditch_id, species_MAVIS)
+
+data_for_MAVIS_plt <- spp_data %>% 
+  filter(survey == "plt") %>% 
+  select(ditch_id, species_MAVIS)
+
+write_csv(data_for_MAVIS_bsln, "../data/data_for_MAVIS_stodm_bsln.csv")
+write_csv(data_for_MAVIS_plt, "../data/data_for_MAVIS_stodm_plt.csv")
+```
 
 
+```{r}
 
-
-
-
+```
 
 
