@@ -1,0 +1,81 @@
+---
+title: "03_rough_analysis"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+traits_plt <- read_csv("../data/plt_2019_traits.csv")
+
+traits_plt
+```
+
+```{r}
+traits_bsln <- read_csv("../data/bsln_1996_traits.csv")
+traits_bsln
+```
+
+
+```{r}
+traits_all <- rbind(traits_bsln, traits_plt)
+
+traits_all_td <- traits_all %>%  
+  gather(key = trait, value = value, light:rud) %>% 
+  mutate(trait = as_factor(trait))
+```
+
+
+```{r}
+ggplot(traits_all_td, aes(y = value, x = trait)) +
+  geom_boxplot(aes(colour = site_code)) + theme(plot.subtitle = element_text(vjust = 1), 
+    plot.caption = element_text(vjust = 1)) +labs(title = "Plant traits")
+
+```
+
+
+
+```{r}
+pairplots <- traits_plt %>% pull(quad) %>% unique()
+traits_paired <- traits_all_td %>% 
+  filter(quad %in% pairplots) %>% 
+  mutate(site_code = as_factor(site_code), 
+         quad = as_factor(quad))
+```
+
+```{r}
+ggplot(traits_paired, aes(y = value, x = trait)) +
+  geom_boxplot(aes(colour = site_code)) +
+  labs(title = "re-surveyed ditches only")
+
+ggplot(traits_paired, aes(y = value, x = survey_year, group = quad)) +
+  geom_line() +
+  facet_wrap(~trait, ncol = 3, scales = "free") +
+  scale_x_continuous(breaks = c(1996, 2019)) +
+  labs(title = "Paired ditches")
+
+```
+
+
+
+```{r}
+ggplot(traits_all_td, aes(x = value)) +
+  geom_histogram(binwidth = 0.01) +
+  facet_wrap(~trait, ncol = 3, scales = "free_y")
+
+ggplot(traits_all_td, aes(x = log(value))) +
+  geom_histogram(binwidth = 0.01) +
+  facet_wrap(~trait, ncol = 3, scales = "free_y")
+
+ggplot(traits_all_td, aes(x = sqrt(value))) +
+  geom_histogram(binwidth = 0.01) +
+  facet_wrap(~trait, ncol = 3, scales = "free_y")
+```
+
+
+
+
+
