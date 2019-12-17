@@ -76,6 +76,74 @@ ggplot(traits_all_td, aes(x = sqrt(value))) +
 ```
 
 
+###summary statistics
+
+
+summary statistics by trait and survey
+```{r}
+traits_sumstats <-  traits_all_td %>% group_by(trait, survey_year) %>% skimr::skim(value) %>% data.frame()
+unique(traits_sumstats$stat)
+traits_sumstats %>%
+  select(-value) %>% 
+  filter(stat %in% c("sd", "n", "mean")) %>% spread(key = stat, value = formatted) %>% 
+    select(-c("variable", "type", "level"))
+```
+
+pooled summary statistics by trait
+```{r}
+traits_sumstats_pooled <-  traits_all_td %>% group_by(trait) %>% skimr::skim(value) %>% data.frame() %>% ungroup()
+traits_sumstats_pooled %>%
+  select(-value) %>% 
+  filter(stat %in% c("sd", "n", "mean")) %>% spread(key = stat, value = formatted) %>% 
+  select(-c("variable", "type", "level"))
+```
+
+
+
+
+### test for differences
+
+```{r}
+traits_paired_w <- traits_paired %>% 
+  mutate(key = paste(site_code, survey_year, sep = "_")) %>% 
+  select(-site_code, -survey_year) %>% 
+  spread(key = key, value = value) 
+```
+
+
+
+
+
+```{r}
+wilcox_traits_paired <- traits_paired_w %>% group_by(trait) %>% 
+  summarise(wilcox = list(wilcox.test(bsln_1996, plt_2019, paired = T))) %>% 
+  mutate(statistic = unlist(map(wilcox, "statistic")),
+         p.value = unlist(map(wilcox, "p.value"))) %>% 
+  select(-wilcox)
+wilcox_traits_paired
+```
+
+
+```{r}
+wilcox_traits_unpaired <- traits_paired_w %>% group_by(trait) %>% 
+  summarise(wilcox = list(wilcox.test(bsln_1996, plt_2019, paired = F))) %>% 
+  mutate(statistic = unlist(map(wilcox, "statistic")),
+         p.value = unlist(map(wilcox, "p.value"))) %>% 
+  select(-wilcox)
+wilcox_traits_unpaired
+```
+
+
+### summary statistics
+```{r}
+traits_paired_sumstats <-  traits_paired_w %>% group_by(trait) %>% skimr::skim()
+```
+
+
+
+
+
+
 
 
 
