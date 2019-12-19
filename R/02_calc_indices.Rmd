@@ -114,7 +114,7 @@ spp_data <- spp_data %>%   left_join(select(spp_lookup, species_verbatim, specie
 
 ```
 
-format for MAVIS
+#### format for MAVIS without abundance
 ```{r}
 data_for_MAVIS_bsln <- spp_data %>% 
   filter(survey == "bsln") %>% 
@@ -127,6 +127,40 @@ data_for_MAVIS_plt <- spp_data %>%
 #write_csv(data_for_MAVIS_bsln, "../data/data_for_MAVIS_stodm_bsln.csv")
 #write_csv(data_for_MAVIS_plt, "../data/data_for_MAVIS_stodm_plt.csv")
 ```
+
+
+#### format for MAVIS with abundance
+```{r}
+data_for_MAVIS_abnd_bsln <- spp_data %>% 
+  filter(survey == "bsln") %>% 
+  select(ditch_id, species_MAVIS, abund)
+
+data_for_MAVIS_abnd_plt <- spp_data %>% 
+  filter(survey == "plt") %>% 
+  select(ditch_id, species_MAVIS, abund)
+
+#write_csv(data_for_MAVIS_bsln, "../data/data_for_MAVIS_stodm_bsln.csv")
+#write_csv(data_for_MAVIS_plt, "../data/data_for_MAVIS_stodm_plt.csv")
+```
+
+**Baseline and pilot used differetn measures of abundance.** 
+
+Baseline = *Dominance recorded as  1 = 1-9%  2 = 10-59%  3 = 60-100%*
+
+Pilot = *DAFOR, or 1 = present, unless scrub or Phramites australis 1 =1-9%, 2= 10-59%, 3=60-100%*
+
+
+```{r}
+hist(data_for_MAVIS_abnd_bsln$abund)
+hist(data_for_MAVIS_abnd_plt$abund)
+```
+
+
+```{r}
+count(data_for_MAVIS_abnd_plt, abund)
+unique(data_for_MAVIS_abnd_plt$abund)
+```
+
 
 
 
